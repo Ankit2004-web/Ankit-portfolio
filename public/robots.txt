@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ankitbiswas.dev/sitemap.xml
+Sitemap: https://ankit-portfolio-iota-one.vercel.app/sitemap.xml

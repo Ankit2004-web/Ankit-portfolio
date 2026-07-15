@@ -16,7 +16,7 @@ export const profile = {
     github: 'https://github.com/Ankit2004-web',
     githubUsername: 'Ankit2004-web',
     linkedin: 'https://www.linkedin.com/in/ankit-biswas-6356a7256/',
-    url: 'https://ankitbiswas.dev',
+    url: 'https://ankit-portfolio-iota-one.vercel.app',
     resumeUrl: '/resume.pdf',
     resumeAvailable: true as boolean,
     profileImage: '/image/profile.png',
