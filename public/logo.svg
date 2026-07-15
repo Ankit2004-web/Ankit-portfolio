@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 48" fill="none" role="img" aria-label="AB">
+  <defs>
+    <linearGradient id="ab-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="50%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <text
+    x="8"
+    y="38"
+    font-family="Inter, ui-sans-serif, system-ui, sans-serif"
+    font-size="42"
+    font-weight="800"
+    fill="url(#ab-gradient)"
+    letter-spacing="-1"
+  >AB</text>
+</svg>

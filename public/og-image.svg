@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#030712"/>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563EB"/>
+      <stop offset="50%" style="stop-color:#7C3AED"/>
+      <stop offset="100%" style="stop-color:#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <circle cx="200" cy="150" r="300" fill="#2563EB" opacity="0.15"/>
+  <circle cx="1000" cy="500" r="250" fill="#7C3AED" opacity="0.15"/>
+  <text x="600" y="280" font-family="Inter, sans-serif" font-size="72" font-weight="700" fill="url(#g)" text-anchor="middle">Ankit Biswas</text>
+  <text x="600" y="360" font-family="Inter, sans-serif" font-size="32" fill="#9CA3AF" text-anchor="middle">Software Engineer | Full Stack Developer</text>
+  <text x="600" y="420" font-family="Inter, sans-serif" font-size="20" fill="#6B7280" text-anchor="middle">React " ASP.NET Core " SQL Server " Azure</text>
+</svg>
