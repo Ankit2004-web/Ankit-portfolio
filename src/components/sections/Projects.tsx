@@ -46,16 +46,36 @@ export function Projects() {
             const logo = 'logo' in project ? project.logo : undefined
             const repoUrl = project.isPrivate
               ? null
-              : resolveProjectRepoUrl(project, repos) ?? siteConfig.github
+              : ('githubUrl' in project && project.githubUrl) ||
+                resolveProjectRepoUrl(project, repos) ||
+                siteConfig.github
 
             return (
               <motion.article
                 key={project.id}
                 variants={staggerItem}
                 whileHover={{ y: -6 }}
+                role={project.liveUrl ? 'link' : undefined}
+                tabIndex={project.liveUrl ? 0 : undefined}
+                onClick={
+                  project.liveUrl
+                    ? () => window.open(project.liveUrl!, '_blank', 'noopener,noreferrer')
+                    : undefined
+                }
+                onKeyDown={
+                  project.liveUrl
+                    ? (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault()
+                          window.open(project.liveUrl!, '_blank', 'noopener,noreferrer')
+                        }
+                      }
+                    : undefined
+                }
                 className={cn(
                   'group glass rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5',
                   project.featured && 'md:col-span-2',
+                  project.liveUrl && 'cursor-pointer',
                 )}
               >
                 <div
@@ -128,7 +148,7 @@ export function Projects() {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3" onClick={(event) => event.stopPropagation()}>
                     {project.isPrivate ? (
                       <Button variant="outline" size="sm" disabled title="Private repository">
                         <LockKeyhole className="w-4 h-4" />
