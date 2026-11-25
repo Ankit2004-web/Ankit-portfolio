@@ -50,16 +50,23 @@ function ProjectMark({ project }: { project: Project }) {
 }
 
 function ProjectBackdrop({ id }: { id: Project['id'] }) {
-  const frame = 'pointer-events-none absolute inset-0 h-full w-full'
+  const frame =
+    'pointer-events-none absolute inset-0 h-full w-full [mask-image:radial-gradient(circle_at_50%_46%,transparent_16%,black_46%)]'
 
   if (id === 'wfims') {
     return (
       <svg className={frame} viewBox="0 0 340 280" fill="none" aria-hidden>
-        <circle cx="54" cy="214" r="14" stroke="white" strokeWidth="2" opacity="0.55" />
-        <circle cx="118" cy="164" r="14" stroke="white" strokeWidth="2" opacity="0.7" />
-        <circle cx="182" cy="214" r="14" stroke="white" strokeWidth="2" opacity="0.55" />
-        <path d="M66 204 L106 174 M130 174 L170 204" stroke="white" strokeWidth="2" opacity="0.45" />
-        <path d="M246 52 v36 M268 64 v24 M290 42 v46" stroke="white" strokeWidth="7" strokeLinecap="round" opacity="0.4" />
+        <rect x="214" y="28" width="104" height="72" rx="14" fill="white" opacity="0.12" />
+        <rect x="214" y="28" width="104" height="72" rx="14" stroke="white" strokeWidth="1.5" opacity="0.45" />
+        <path d="M230 72 v-16 M248 72 v-28 M266 72 v-10 M284 72 v-22 M302 72 v-18" stroke="white" strokeWidth="6" strokeLinecap="round" opacity="0.7" />
+        <circle cx="42" cy="58" r="16" fill="white" opacity="0.2" />
+        <circle cx="78" cy="40" r="11" fill="white" opacity="0.28" />
+        <circle cx="104" cy="68" r="13" fill="white" opacity="0.16" />
+        <path d="M56 52 L68 44 M88 46 L94 58" stroke="white" strokeWidth="2" opacity="0.55" />
+        <rect x="22" y="188" width="86" height="58" rx="12" fill="white" opacity="0.1" />
+        <path d="M36 224 h58 M36 210 h40" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.45" />
+        <circle cx="292" cy="214" r="22" stroke="white" strokeWidth="2" opacity="0.4" />
+        <path d="M292 202 v14 l8 6" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.65" />
       </svg>
     )
   }
@@ -67,12 +74,18 @@ function ProjectBackdrop({ id }: { id: Project['id'] }) {
   if (id === 'velune') {
     return (
       <svg className={frame} viewBox="0 0 340 280" fill="none" aria-hidden>
-        <path d="M62 58 c8 10 8 18 0 28 c-8-10-8-18 0-28 Z" fill="white" opacity="0.28" transform="rotate(-20 62 72)" />
-        <path d="M286 196 c10 12 10 22 0 34 c-10-12-10-22 0-34 Z" fill="white" opacity="0.34" transform="rotate(24 286 213)" />
-        <path d="M48 168 c14-8 28-8 36 2 c8 10-4 22-18 24 c-14-2-26-14-18-26 Z" fill="white" opacity="0.22" />
-        <circle cx="300" cy="58" r="3" fill="white" opacity="0.7" />
-        <circle cx="78" cy="236" r="2.5" fill="white" opacity="0.65" />
-        <circle cx="250" cy="86" r="2" fill="white" opacity="0.55" />
+        <path d="M250 176 h56 v40 a8 8 0 0 1-8 8 h-40 a8 8 0 0 1-8-8 v-40 Z" fill="white" opacity="0.16" />
+        <path d="M250 176 h56" stroke="white" strokeWidth="8" opacity="0.35" />
+        <path d="M278 160 c0-16 16-22 16-8 c0-14 16-8 16 8" stroke="white" strokeWidth="3" opacity="0.7" />
+        <path d="M48 46 c12 16 12 28 0 42 c-12-14-12-26 0-42 Z" fill="white" opacity="0.35" transform="rotate(-28 48 67)" />
+        <path d="M96 34 c9 12 9 20 0 30 c-9-10-9-18 0-30 Z" fill="white" opacity="0.22" transform="rotate(18 96 49)" />
+        <path d="M300 46 c10 14 10 24 0 36 c-10-12-10-22 0-36 Z" fill="white" opacity="0.3" transform="rotate(30 300 64)" />
+        <path d="M36 150 c18-12 34-8 42 6 c8 14-6 28-22 28 c-16 0-32-12-20-34 Z" fill="white" opacity="0.2" />
+        <path d="M70 214 c8-14 24-16 32-2 c6 12-8 24-16 24 c-10 0-22-8-16-22 Z" fill="white" opacity="0.28" />
+        <circle cx="214" cy="48" r="2.5" fill="white" />
+        <circle cx="132" cy="236" r="2" fill="white" opacity="0.8" />
+        <circle cx="318" cy="132" r="2" fill="white" opacity="0.7" />
+        <path d="M24 230 q40-28 70-8" stroke="white" strokeWidth="2" opacity="0.35" />
       </svg>
     )
   }
@@ -80,11 +93,19 @@ function ProjectBackdrop({ id }: { id: Project['id'] }) {
   if (id === 'railway-reservation') {
     return (
       <svg className={frame} viewBox="0 0 340 280" fill="none" aria-hidden>
-        <path d="M-20 196 C70 150 150 236 360 168" stroke="white" strokeWidth="3" opacity="0.55" />
-        <path d="M-20 222 C70 176 150 262 360 194" stroke="white" strokeWidth="3" opacity="0.55" />
-        <path d="M36 188 v42 M92 176 v46 M148 184 v48 M204 176 v46 M260 168 v44 M316 162 v42" stroke="white" strokeWidth="3" opacity="0.4" />
-        <circle cx="292" cy="58" r="18" stroke="white" strokeWidth="3" opacity="0.45" />
-        <circle cx="292" cy="58" r="6" fill="white" opacity="0.45" />
+        <path d="M20 250 L160 150 L160 168 L36 262 Z" fill="white" opacity="0.12" />
+        <path d="M320 250 L180 150 L180 168 L304 262 Z" fill="white" opacity="0.12" />
+        <path d="M28 246 L156 156 M44 258 L164 164" stroke="white" strokeWidth="2" opacity="0.55" />
+        <path d="M312 246 L184 156 M296 258 L176 164" stroke="white" strokeWidth="2" opacity="0.55" />
+        <path d="M70 230 l18-16 M96 214 l16-14 M122 198 l14-12" stroke="white" strokeWidth="3" opacity="0.4" />
+        <path d="M270 230 l-18-16 M244 214 l-16-14 M218 198 l-14-12" stroke="white" strokeWidth="3" opacity="0.4" />
+        <rect x="228" y="36" width="86" height="36" rx="8" fill="white" opacity="0.16" />
+        <rect x="214" y="58" width="28" height="22" rx="4" fill="white" opacity="0.22" />
+        <circle cx="248" cy="84" r="8" stroke="white" strokeWidth="3" opacity="0.6" />
+        <circle cx="296" cy="84" r="8" stroke="white" strokeWidth="3" opacity="0.6" />
+        <path d="M250 36 c8-16 22-16 30 0" stroke="white" strokeWidth="2" opacity="0.45" />
+        <circle cx="46" cy="58" r="5" fill="white" opacity="0.35" />
+        <circle cx="64" cy="44" r="8" fill="white" opacity="0.2" />
       </svg>
     )
   }
@@ -92,11 +113,17 @@ function ProjectBackdrop({ id }: { id: Project['id'] }) {
   if (id === 'drowsiness-detection') {
     return (
       <svg className={frame} viewBox="0 0 340 280" fill="none" aria-hidden>
-        <path d="M214 78 C238 52 274 52 298 78 C274 104 238 104 214 78 Z" stroke="white" strokeWidth="3" opacity="0.6" />
-        <circle cx="256" cy="78" r="10" fill="white" opacity="0.45" />
-        <circle cx="62" cy="210" r="18" stroke="white" strokeWidth="2" opacity="0.35" />
-        <circle cx="62" cy="210" r="32" stroke="white" strokeWidth="2" opacity="0.22" />
-        <path d="M286 196 l10 18 h-20 Z" stroke="white" strokeWidth="2" opacity="0.45" />
+        <path d="M18 92 C58 48 118 48 156 92 C118 132 58 132 18 92 Z" fill="white" opacity="0.1" />
+        <path d="M22 92 C60 56 114 56 152 92 C114 124 60 124 22 92 Z" stroke="white" strokeWidth="3" opacity="0.65" />
+        <path d="M28 86 l-8-14 M48 70 l-4-16 M74 62 v-16 M100 70 l4-16 M124 88 l10-12" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.55" />
+        <circle cx="86" cy="92" r="16" fill="white" opacity="0.28" />
+        <circle cx="90" cy="90" r="6" fill="white" opacity="0.75" />
+        <path d="M210 196 q24-18 48 0 M210 214 q24-18 48 0 M210 232 q24-18 48 0" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.45" />
+        <path d="M262 40 l14 24 h-28 Z" fill="white" opacity="0.16" />
+        <path d="M262 40 l14 24 h-28 Z" stroke="white" strokeWidth="2" opacity="0.6" />
+        <path d="M262 52 v6" stroke="white" strokeWidth="2" strokeLinecap="round" />
+        <path d="M24 220 h90" stroke="white" strokeWidth="3" strokeDasharray="10 8" opacity="0.4" />
+        <path d="M24 236 h70" stroke="white" strokeWidth="3" strokeDasharray="10 8" opacity="0.28" />
       </svg>
     )
   }
@@ -104,12 +131,20 @@ function ProjectBackdrop({ id }: { id: Project['id'] }) {
   if (id === 'cipherlink') {
     return (
       <svg className={frame} viewBox="0 0 340 280" fill="none" aria-hidden>
-        <rect x="36" y="168" width="78" height="48" rx="16" stroke="white" strokeWidth="2.5" opacity="0.55" />
-        <path d="M52 216 l-8 14" stroke="white" strokeWidth="2.5" opacity="0.55" />
-        <rect x="232" y="40" width="72" height="44" rx="16" stroke="white" strokeWidth="2.5" opacity="0.5" />
-        <circle cx="300" cy="214" r="28" stroke="white" strokeWidth="2" strokeDasharray="4 6" opacity="0.45" />
-        <rect x="290" y="208" width="20" height="16" rx="3" stroke="white" strokeWidth="2" opacity="0.6" />
-        <path d="M294 208 v-6 a6 6 0 0 1 12 0 v6" stroke="white" strokeWidth="2" opacity="0.6" />
+        <rect x="18" y="36" width="96" height="58" rx="18" fill="white" opacity="0.14" />
+        <circle cx="46" cy="65" r="4" fill="white" opacity="0.7" />
+        <circle cx="66" cy="65" r="4" fill="white" opacity="0.5" />
+        <circle cx="86" cy="65" r="4" fill="white" opacity="0.3" />
+        <path d="M34 94 l-10 14" stroke="white" strokeWidth="3" opacity="0.4" />
+        <rect x="220" y="168" width="102" height="52" rx="18" fill="white" opacity="0.12" />
+        <path d="M242 194 h58" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
+        <path d="M308 220 l12 12" stroke="white" strokeWidth="3" opacity="0.35" />
+        <circle cx="292" cy="58" r="34" stroke="white" strokeWidth="1.5" strokeDasharray="3 5" opacity="0.4" />
+        <circle cx="292" cy="58" r="22" stroke="white" strokeWidth="1.5" opacity="0.3" />
+        <rect x="282" y="52" width="20" height="16" rx="3" fill="white" opacity="0.2" />
+        <path d="M286 52 v-7 a6 6 0 0 1 12 0 v7" stroke="white" strokeWidth="2" opacity="0.75" />
+        <path d="M28 214 h8 M44 214 h4 M58 214 h10 M78 214 h6" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
+        <path d="M36 232 h14 M60 232 h6 M76 232 h12" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.28" />
       </svg>
     )
   }
