@@ -21,14 +21,102 @@ const iconMap = {
   globe: Globe,
 }
 
+type Project = (typeof projects)[number]
+
+function ProjectMark({
+  project,
+  size,
+}: {
+  project: Project
+  size: 'featured' | 'compact'
+}) {
+  const Icon = iconMap[project.icon] || Globe
+  const logo = 'logo' in project ? project.logo : undefined
+  const featured = size === 'featured'
+
+  return (
+    <div
+      className={cn(
+        'relative flex items-center justify-center shadow-2xl ring-1 ring-white/30',
+        logo
+          ? cn('rounded-full bg-white', featured ? 'h-32 w-32 p-3.5' : 'h-24 w-24 p-2.5')
+          : cn('rounded-3xl bg-white/15 backdrop-blur-md', featured ? 'h-28 w-28' : 'h-20 w-20'),
+      )}
+    >
+      {logo ? (
+        <img
+          src={logo}
+          alt={`${project.title} logo`}
+          className="h-full w-full object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <Icon className={cn('text-white', featured ? 'h-12 w-12' : 'h-9 w-9')} />
+      )}
+    </div>
+  )
+}
+
+function ProjectLinks({ project, repoUrl }: { project: Project; repoUrl: string | null }) {
+  return (
+    <div className="flex flex-wrap gap-2.5" onClick={(event) => event.stopPropagation()}>
+      {project.isPrivate ? (
+        <Button variant="outline" size="sm" disabled title="Private repository">
+          <LockKeyhole className="h-4 w-4" />
+          Private
+        </Button>
+      ) : repoUrl ? (
+        <Button variant="outline" size="sm" asChild>
+          <a href={repoUrl} target="_blank" rel="noopener noreferrer">
+            <GithubIcon className="h-4 w-4" />
+            GitHub
+          </a>
+        </Button>
+      ) : (
+        <Button variant="outline" size="sm" asChild>
+          <a href={siteConfig.github} target="_blank" rel="noopener noreferrer">
+            <GithubIcon className="h-4 w-4" />
+            GitHub
+          </a>
+        </Button>
+      )}
+      {project.liveUrl && (
+        <Button size="sm" asChild>
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="h-4 w-4" />
+            Live Demo
+          </a>
+        </Button>
+      )}
+    </div>
+  )
+}
+
+function openLive(url: string) {
+  window.open(url, '_blank', 'noopener,noreferrer')
+}
+
 export function Projects() {
   const { ref, isInView } = useInView({ rootMargin: '200px' })
   const { data: githubData } = useGitHub(isInView)
   const repos = githubData?.recentRepos ?? []
+  const featured = projects.filter((project) => project.featured)
+  const others = projects.filter((project) => !project.featured)
+
+  const repoUrlFor = (project: Project) =>
+    project.isPrivate
+      ? null
+      : ('githubUrl' in project && project.githubUrl) ||
+        resolveProjectRepoUrl(project, repos) ||
+        siteConfig.github
 
   return (
-    <section id="projects" ref={ref} className="section-padding relative">
-      <div className="container-custom">
+    <section id="projects" ref={ref} className="section-padding relative scroll-mt-24 overflow-hidden">
+      <div className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-64 w-64 rounded-full bg-secondary/10 blur-3xl" />
+
+      <div className="container-custom relative">
         <SectionHeading
           label="Projects"
           title="Featured Work"
@@ -40,17 +128,81 @@ export function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-6"
+          className="space-y-6"
         >
-          {projects.map((project) => {
-            const Icon = iconMap[project.icon] || Globe
-            const logo = 'logo' in project ? project.logo : undefined
-            const repoUrl = project.isPrivate
-              ? null
-              : ('githubUrl' in project && project.githubUrl) ||
-                resolveProjectRepoUrl(project, repos) ||
-                siteConfig.github
+          {featured.map((project, index) => {
+            const repoUrl = repoUrlFor(project)
+            return (
+              <motion.article
+                key={project.id}
+                variants={staggerItem}
+                role={project.liveUrl ? 'link' : undefined}
+                tabIndex={project.liveUrl ? 0 : undefined}
+                onClick={project.liveUrl ? () => openLive(project.liveUrl!) : undefined}
+                onKeyDown={
+                  project.liveUrl
+                    ? (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault()
+                          openLive(project.liveUrl!)
+                        }
+                      }
+                    : undefined
+                }
+                className={cn(
+                  'group glass overflow-hidden rounded-[28px] transition-all duration-300 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10',
+                  project.liveUrl && 'cursor-pointer',
+                )}
+              >
+                <div className="grid lg:grid-cols-[minmax(260px,340px)_1fr]">
+                  <div className={cn('relative min-h-64 overflow-hidden bg-linear-to-br', project.gradient)}>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_42%)]" />
+                    <div className="absolute -bottom-16 -right-10 h-48 w-48 rounded-full bg-black/20 blur-2xl" />
+                    <div className="absolute inset-0 opacity-25 bg-[linear-gradient(rgba(255,255,255,0.45)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.45)_1px,transparent_1px)] bg-[size:28px_28px]" />
+                    <div className="absolute left-5 top-5 z-10">
+                      <span className="rounded-full bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
+                        Featured
+                      </span>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <ProjectMark project={project} size="featured" />
+                    </div>
+                  </div>
 
+                  <div className="flex flex-col p-6 md:p-8 lg:p-10">
+                    <p className="font-mono text-xs tracking-[0.22em] text-primary">
+                      {String(index + 1).padStart(2, '0')}
+                    </p>
+                    <h3 className="mt-2 text-2xl font-bold tracking-tight transition-colors group-hover:text-primary md:text-3xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
+                      {project.description}
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {project.techStack.map((tech) => (
+                        <Badge key={tech}>{tech}</Badge>
+                      ))}
+                    </div>
+                    <div className="mt-6 lg:mt-auto lg:pt-8">
+                      <ProjectLinks project={project} repoUrl={repoUrl} />
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
+            )
+          })}
+        </motion.div>
+
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-6 grid gap-6 md:grid-cols-2"
+        >
+          {others.map((project, index) => {
+            const repoUrl = repoUrlFor(project)
             return (
               <motion.article
                 key={project.id}
@@ -58,126 +210,46 @@ export function Projects() {
                 whileHover={{ y: -6 }}
                 role={project.liveUrl ? 'link' : undefined}
                 tabIndex={project.liveUrl ? 0 : undefined}
-                onClick={
-                  project.liveUrl
-                    ? () => window.open(project.liveUrl!, '_blank', 'noopener,noreferrer')
-                    : undefined
-                }
+                onClick={project.liveUrl ? () => openLive(project.liveUrl!) : undefined}
                 onKeyDown={
                   project.liveUrl
                     ? (event) => {
                         if (event.key === 'Enter' || event.key === ' ') {
                           event.preventDefault()
-                          window.open(project.liveUrl!, '_blank', 'noopener,noreferrer')
+                          openLive(project.liveUrl!)
                         }
                       }
                     : undefined
                 }
                 className={cn(
-                  'group glass rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5',
-                  project.featured && 'md:col-span-2',
+                  'group glass flex h-full flex-col overflow-hidden rounded-[24px] transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10',
                   project.liveUrl && 'cursor-pointer',
                 )}
               >
-                <div
-                  className={cn(
-                    `relative bg-linear-to-br ${project.gradient} overflow-hidden`,
-                    project.featured ? 'h-56 md:h-64' : 'h-48',
-                  )}
-                >
-                  <div className="absolute inset-0 bg-black/20" />
-                  {project.featured && (
-                    <div className="absolute top-4 left-4 z-10">
-                      <Badge className="bg-primary/90 text-white border-0 text-xs font-semibold">
-                        Featured Project
-                      </Badge>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 flex items-center justify-center px-6">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                      className={cn(
-                        'bg-white flex items-center justify-center shadow-lg ring-1 ring-white/20',
-                        logo
-                          ? cn(
-                              'rounded-full overflow-hidden',
-                              project.featured ? 'w-28 h-28 p-3' : 'w-24 h-24 p-2',
-                            )
-                          : cn(
-                              'rounded-2xl bg-white/10 backdrop-blur-sm',
-                              project.featured ? 'w-24 h-24' : 'w-20 h-20',
-                            ),
-                      )}
-                    >
-                      {logo ? (
-                        <img
-                          src={logo}
-                          alt={`${project.title} logo`}
-                          className="w-full h-full object-contain"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      ) : (
-                        <Icon className={cn('text-white', project.featured ? 'w-12 h-12' : 'w-10 h-10')} />
-                      )}
-                    </motion.div>
+                <div className={cn('relative h-44 overflow-hidden bg-linear-to-br', project.gradient)}>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.32),transparent_40%)]" />
+                  <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)] bg-[size:24px_24px]" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <ProjectMark project={project} size="compact" />
                   </div>
                 </div>
-
-                <div className={cn('p-6', project.featured && 'md:p-8')}>
-                  <h3
-                    className={cn(
-                      'font-bold mb-3 group-hover:text-primary transition-colors',
-                      project.featured ? 'text-2xl md:text-3xl' : 'text-xl',
-                    )}
-                  >
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="font-mono text-xs tracking-[0.18em] text-primary">
+                    {String(featured.length + index + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className="mt-2 text-xl font-bold tracking-tight transition-colors group-hover:text-primary">
                     {project.title}
                   </h3>
-                  <p
-                    className={cn(
-                      'text-muted leading-relaxed mb-4',
-                      project.featured ? 'text-base line-clamp-4' : 'text-sm line-clamp-3',
-                    )}
-                  >
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="mt-4 flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
-                      <Badge key={tech} className="text-xs">
-                        {tech}
-                      </Badge>
+                      <Badge key={tech}>{tech}</Badge>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-3" onClick={(event) => event.stopPropagation()}>
-                    {project.isPrivate ? (
-                      <Button variant="outline" size="sm" disabled title="Private repository">
-                        <LockKeyhole className="w-4 h-4" />
-                        Private Repository
-                      </Button>
-                    ) : repoUrl ? (
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={repoUrl} target="_blank" rel="noopener noreferrer">
-                          <GithubIcon className="w-4 h-4" />
-                          GitHub
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={siteConfig.github} target="_blank" rel="noopener noreferrer">
-                          <GithubIcon className="w-4 h-4" />
-                          View on GitHub
-                        </a>
-                      </Button>
-                    )}
-                    {project.liveUrl && (
-                      <Button variant="ghost" size="sm" asChild>
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
-                        </a>
-                      </Button>
-                    )}
+                  <div className="mt-auto pt-5">
+                    <ProjectLinks project={project} repoUrl={repoUrl} />
                   </div>
                 </div>
               </motion.article>
