@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-surface/30">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary to-accent" />
-      <div className="container-custom section-padding py-12">
+      <div className="container-custom px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-lg font-semibold mb-1">
@@ -46,7 +46,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-muted sm:flex-row">
           <p>&copy; {year} {siteConfig.name}. All rights reserved.</p>
           <p className="flex items-center gap-1">
             Built with React + TypeScript + Tailwind CSS
