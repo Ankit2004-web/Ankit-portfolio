@@ -8,7 +8,7 @@ export const profile = {
     initials: 'AB',
     title: 'Software Engineer | Full Stack Developer',
     description:
-      'Full stack developer at Newmark. I build enterprise software and ship products you can open, from a private gift site to an encrypted messenger, using React, .NET, Next.js, and Python.',
+      'I build software you can open. At Newmark that means tools a team uses every day. Alongside it, a private birthday in one link, and a messenger that keeps every chat encrypted. React, .NET, Next.js, and Python.',
     location: 'Hyderabad, Telangana, India',
     email: 'imankit.biswas@gmail.com',
     phone: '+91 7864939820',
