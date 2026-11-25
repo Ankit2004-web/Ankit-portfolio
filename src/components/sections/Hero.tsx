@@ -1,12 +1,8 @@
 import { motion } from 'framer-motion'
-import { ArrowDown, FolderOpen, Mail } from 'lucide-react'
+import { ArrowDown, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/common/SocialIcons'
-import { ResumeButton } from '@/components/common/ResumeButton'
 import { siteConfig, rotatingTitles, socialLinks } from '@/data/site'
-import { projects } from '@/data/projects'
 import { techBadges } from '@/data/skills'
-import { Button } from '@/components/ui/button'
-import { MagneticButton } from '@/components/common/MagneticButton'
 import { TypingAnimation } from '@/components/common/TypingAnimation'
 import { scrollToSection } from '@/lib/utils'
 
@@ -47,13 +43,6 @@ const codeLines: Array<Array<{ text: string; className: string }>> = [
     { text: ',', className: 'text-muted' },
   ],
   [{ text: '};', className: 'text-foreground' }],
-]
-
-const proof = [
-  { label: 'Now', value: 'Newmark' },
-  { label: 'Role', value: 'Associate Trainee' },
-  { label: 'Shipped', value: `${projects.length} projects` },
-  { label: 'Based', value: siteConfig.location.split(',')[0] },
 ]
 
 /** Fixed positions — each badge gets a unique slot to prevent overlap */
@@ -119,42 +108,6 @@ export function Hero() {
             >
               {siteConfig.description}
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55 }}
-              className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
-            >
-              {proof.map((item) => (
-                <div key={item.label} className="glass min-w-0 rounded-2xl px-3 py-3">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-primary">{item.label}</p>
-                  <p className="mt-1 text-sm font-semibold leading-snug break-words">{item.value}</p>
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="mb-8 flex flex-col gap-3 sm:flex-row"
-            >
-              <MagneticButton className="w-full sm:w-auto">
-                <ResumeButton size="lg" className="w-full" />
-              </MagneticButton>
-              <MagneticButton className="w-full sm:w-auto">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full"
-                  onClick={() => scrollToSection('projects')}
-                >
-                  <FolderOpen className="w-4 h-4" />
-                  View Projects
-                </Button>
-              </MagneticButton>
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
