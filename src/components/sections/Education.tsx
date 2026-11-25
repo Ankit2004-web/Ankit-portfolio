@@ -3,6 +3,13 @@ import { GraduationCap } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { education } from '@/data/education'
 import { staggerContainer, staggerItem } from '@/components/animations/variants'
+import { cn } from '@/lib/utils'
+
+const schoolBackdrops: Record<string, string> = {
+  'KIIT University': 'from-emerald-500 via-green-600 to-teal-700',
+  'Gorabazar Iswar Chandra Institution': 'from-zinc-400 via-slate-600 to-zinc-900',
+  'Sagarpara High School': 'from-orange-500 via-red-500 to-amber-500',
+}
 
 export function Education() {
   return (
@@ -25,35 +32,37 @@ export function Education() {
             <motion.div
               key={edu.institution}
               variants={staggerItem}
-              className="glass rounded-2xl p-8 text-center relative overflow-hidden group h-full"
+              className="group relative h-full overflow-hidden rounded-2xl glass text-center"
             >
-              <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative flex flex-col h-full">
-                <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center mx-auto mb-6 p-2 shadow-sm ring-1 ring-white/10">
+              <div className={cn('relative overflow-hidden bg-linear-to-br px-8 pb-8 pt-8', schoolBackdrops[edu.institution] ?? 'from-primary via-secondary to-accent')}>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_15%,rgba(255,255,255,0.38),transparent_46%)]" />
+                <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-white p-2 shadow-lg ring-1 ring-white/20">
                   {'logo' in edu && edu.logo ? (
                     <img
                       src={edu.logo}
                       alt={`${edu.institution} logo`}
-                      className="w-full h-full object-contain"
+                      className="h-full w-full object-contain"
                     />
                   ) : (
-                    <GraduationCap className="w-8 h-8 text-primary" />
+                    <GraduationCap className="h-8 w-8 text-primary" />
                   )}
                 </div>
-                <h3 className="text-xl font-bold mb-2 leading-snug">{edu.institution}</h3>
-                <p className="text-base text-primary font-medium mb-1">{edu.degree}</p>
-                <p className="text-muted mb-4 text-sm">{edu.field}</p>
-                <div className="flex items-center justify-center gap-3 flex-wrap mt-auto">
-                  <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 text-sm text-muted">
+              </div>
+              <div className="flex h-full flex-col px-8 pb-8 pt-6">
+                <h3 className="mb-2 text-xl font-bold leading-snug">{edu.institution}</h3>
+                <p className="mb-1 text-base font-medium text-primary">{edu.degree}</p>
+                <p className="mb-4 text-sm text-muted">{edu.field}</p>
+                <div className="mt-auto flex flex-wrap items-center justify-center gap-3">
+                  <span className="inline-block rounded-full bg-white/5 px-4 py-1.5 text-sm text-muted">
                     {edu.period}
                   </span>
                   {'cgpa' in edu && edu.cgpa && (
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-sm text-primary font-medium">
+                    <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                       CGPA: {edu.cgpa}
                     </span>
                   )}
                   {'percentage' in edu && edu.percentage && (
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-sm text-primary font-medium">
+                    <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                       {edu.percentage}
                     </span>
                   )}
