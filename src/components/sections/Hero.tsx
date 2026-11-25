@@ -3,7 +3,6 @@ import { ArrowDown, FolderOpen, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/common/SocialIcons'
 import { ResumeButton } from '@/components/common/ResumeButton'
 import { siteConfig, rotatingTitles, socialLinks } from '@/data/site'
-import { profile } from '@/data/profile'
 import { projects } from '@/data/projects'
 import { techBadges } from '@/data/skills'
 import { Button } from '@/components/ui/button'
@@ -89,13 +88,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-5 inline-flex max-w-full items-center gap-2 whitespace-normal rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+              className="mb-4 text-lg text-muted"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              {profile.about.role}
+              Hi, I&apos;m
             </motion.p>
 
             <motion.h1
