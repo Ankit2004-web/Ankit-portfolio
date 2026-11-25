@@ -199,6 +199,7 @@ export const profile = {
       liveUrl: null,
       gradient: 'from-violet-700 via-[#8B5CFF] to-purple-950',
       icon: 'lock' as const,
+      logo: '/image/cipherlink-logo.png',
     },
   ],
 
