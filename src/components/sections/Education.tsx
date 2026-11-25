@@ -26,7 +26,7 @@ export function Education() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 max-w-6xl mx-auto"
+          className="mx-auto grid max-w-6xl items-stretch gap-6 lg:grid-cols-3"
         >
           {education.map((edu) => (
             <motion.div
@@ -49,7 +49,7 @@ export function Education() {
                 </div>
               </div>
               <div className="flex h-full flex-col px-8 pb-8 pt-6">
-                <h3 className="mb-2 text-xl font-bold leading-snug">{edu.institution}</h3>
+                <h3 className="mb-2 min-h-14 text-xl font-bold leading-snug">{edu.institution}</h3>
                 <p className="mb-1 text-base font-medium text-primary">{edu.degree}</p>
                 <p className="mb-4 text-sm text-muted">{edu.field}</p>
                 <div className="mt-auto flex flex-wrap items-center justify-center gap-3">
