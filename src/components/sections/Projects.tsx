@@ -23,24 +23,15 @@ const iconMap = {
 
 type Project = (typeof projects)[number]
 
-function ProjectMark({
-  project,
-  size,
-}: {
-  project: Project
-  size: 'featured' | 'compact'
-}) {
+function ProjectMark({ project }: { project: Project }) {
   const Icon = iconMap[project.icon] || Globe
   const logo = 'logo' in project ? project.logo : undefined
-  const featured = size === 'featured'
 
   return (
     <div
       className={cn(
         'relative flex items-center justify-center shadow-2xl ring-1 ring-white/30',
-        logo
-          ? cn('rounded-full bg-white', featured ? 'h-32 w-32 p-3.5' : 'h-24 w-24 p-2.5')
-          : cn('rounded-3xl bg-white/15 backdrop-blur-md', featured ? 'h-28 w-28' : 'h-20 w-20'),
+        logo ? 'h-32 w-32 rounded-full bg-white p-3.5' : 'h-28 w-28 rounded-3xl bg-white/15 backdrop-blur-md',
       )}
     >
       {logo ? (
@@ -52,7 +43,7 @@ function ProjectMark({
           decoding="async"
         />
       ) : (
-        <Icon className={cn('text-white', featured ? 'h-12 w-12' : 'h-9 w-9')} />
+        <Icon className="h-12 w-12 text-white" />
       )}
     </div>
   )
@@ -101,9 +92,6 @@ export function Projects() {
   const { ref, isInView } = useInView({ rootMargin: '200px' })
   const { data: githubData } = useGitHub(isInView)
   const repos = githubData?.recentRepos ?? []
-  const featured = projects.filter((project) => project.featured)
-  const others = projects.filter((project) => !project.featured)
-
   const repoUrlFor = (project: Project) =>
     project.isPrivate
       ? null
@@ -130,7 +118,7 @@ export function Projects() {
           viewport={{ once: true }}
           className="space-y-6"
         >
-          {featured.map((project, index) => {
+          {projects.map((project, index) => {
             const repoUrl = repoUrlFor(project)
             return (
               <motion.article
@@ -159,13 +147,15 @@ export function Projects() {
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_42%)]" />
                     <div className="absolute -bottom-16 -right-10 h-48 w-48 rounded-full bg-black/20 blur-2xl" />
                     <div className="absolute inset-0 opacity-25 bg-[linear-gradient(rgba(255,255,255,0.45)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.45)_1px,transparent_1px)] bg-[size:28px_28px]" />
-                    <div className="absolute left-5 top-5 z-10">
-                      <span className="rounded-full bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
-                        Featured
-                      </span>
-                    </div>
+                    {project.featured && (
+                      <div className="absolute left-5 top-5 z-10">
+                        <span className="rounded-full bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
+                          Featured
+                        </span>
+                      </div>
+                    )}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <ProjectMark project={project} size="featured" />
+                      <ProjectMark project={project} />
                     </div>
                   </div>
 
@@ -187,69 +177,6 @@ export function Projects() {
                     <div className="mt-6 lg:mt-auto lg:pt-8">
                       <ProjectLinks project={project} repoUrl={repoUrl} />
                     </div>
-                  </div>
-                </div>
-              </motion.article>
-            )
-          })}
-        </motion.div>
-
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="mt-6 grid gap-6 md:grid-cols-2"
-        >
-          {others.map((project, index) => {
-            const repoUrl = repoUrlFor(project)
-            return (
-              <motion.article
-                key={project.id}
-                variants={staggerItem}
-                whileHover={{ y: -6 }}
-                role={project.liveUrl ? 'link' : undefined}
-                tabIndex={project.liveUrl ? 0 : undefined}
-                onClick={project.liveUrl ? () => openLive(project.liveUrl!) : undefined}
-                onKeyDown={
-                  project.liveUrl
-                    ? (event) => {
-                        if (event.key === 'Enter' || event.key === ' ') {
-                          event.preventDefault()
-                          openLive(project.liveUrl!)
-                        }
-                      }
-                    : undefined
-                }
-                className={cn(
-                  'group glass flex h-full flex-col overflow-hidden rounded-[24px] transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10',
-                  project.liveUrl && 'cursor-pointer',
-                )}
-              >
-                <div className={cn('relative h-44 overflow-hidden bg-linear-to-br', project.gradient)}>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.32),transparent_40%)]" />
-                  <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)] bg-[size:24px_24px]" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <ProjectMark project={project} size="compact" />
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="font-mono text-xs tracking-[0.18em] text-primary">
-                    {String(featured.length + index + 1).padStart(2, '0')}
-                  </p>
-                  <h3 className="mt-2 text-xl font-bold tracking-tight transition-colors group-hover:text-primary">
-                    {project.title}
-                  </h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">
-                    {project.description}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <Badge key={tech}>{tech}</Badge>
-                    ))}
-                  </div>
-                  <div className="mt-auto pt-5">
-                    <ProjectLinks project={project} repoUrl={repoUrl} />
                   </div>
                 </div>
               </motion.article>
