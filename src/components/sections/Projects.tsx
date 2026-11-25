@@ -146,7 +146,6 @@ export function Projects() {
                   <div className={cn('relative min-h-64 overflow-hidden bg-linear-to-br', project.gradient)}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_42%)]" />
                     <div className="absolute -bottom-16 -right-10 h-48 w-48 rounded-full bg-black/20 blur-2xl" />
-                    <div className="absolute inset-0 opacity-25 bg-[linear-gradient(rgba(255,255,255,0.45)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.45)_1px,transparent_1px)] bg-[size:28px_28px]" />
                     {project.featured && (
                       <div className="absolute left-5 top-5 z-10">
                         <span className="rounded-full bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
