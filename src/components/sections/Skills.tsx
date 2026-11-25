@@ -11,7 +11,7 @@ export function Skills() {
         <SectionHeading
           label="Skills"
           title="Technologies I Work With"
-          description="A comprehensive toolkit for building modern, scalable web applications."
+          description="The stack behind the projects: enterprise .NET, product work in Next.js and Python, and embedded hardware."
         />
 
         <motion.div

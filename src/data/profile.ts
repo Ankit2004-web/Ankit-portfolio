@@ -208,11 +208,13 @@ export const profile = {
       title: 'Frontend',
       skills: [
         { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 85 },
+        { name: 'Next.js', level: 84 },
+        { name: 'TypeScript', level: 88 },
         { name: 'JavaScript', level: 90 },
         { name: 'HTML5', level: 95 },
         { name: 'CSS3', level: 90 },
         { name: 'Tailwind CSS', level: 88 },
+        { name: 'Vite', level: 82 },
         { name: 'Bootstrap', level: 75 },
       ],
     },
@@ -222,6 +224,8 @@ export const profile = {
         { name: 'C#', level: 88 },
         { name: 'ASP.NET Core', level: 85 },
         { name: '.NET 8', level: 85 },
+        { name: 'Python', level: 80 },
+        { name: 'Flask', level: 78 },
         { name: 'Node.js', level: 78 },
         { name: 'Express.js', level: 75 },
       ],
@@ -229,7 +233,9 @@ export const profile = {
     {
       title: 'Database',
       skills: [
+        { name: 'PostgreSQL', level: 82 },
         { name: 'SQL Server', level: 85 },
+        { name: 'Prisma', level: 78 },
         { name: 'MongoDB', level: 72 },
         { name: 'MySQL', level: 75 },
       ],
@@ -248,17 +254,26 @@ export const profile = {
       ],
     },
     {
-      title: 'Other',
+      title: 'Security',
       skills: [
         { name: 'REST APIs', level: 90 },
         { name: 'JWT Authentication', level: 85 },
+        { name: 'Google sign-in', level: 80 },
+        { name: 'Cryptography', level: 78 },
         { name: 'CI/CD', level: 78 },
-        { name: 'Agile Development', level: 85 },
+        { name: 'Agile', level: 85 },
+      ],
+    },
+    {
+      title: 'Embedded',
+      skills: [
+        { name: 'Arduino', level: 74 },
+        { name: 'C++', level: 76 },
       ],
     },
   ],
 
-  techBadges: ['React', 'Azure DevOps', 'TypeScript', 'C#', '.NET 8', 'SQL Server', 'Node.js'],
+  techBadges: ['React', 'Next.js', 'TypeScript', 'C#', '.NET 8', 'PostgreSQL', 'Python'],
 
   achievements: [
     {
