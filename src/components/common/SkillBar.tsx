@@ -20,7 +20,7 @@ export function SkillBar({ name, level, delay = 0 }: SkillBarProps) {
           whileInView={{ width: `${level}%` }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="h-full bg-primary"
+          className="h-full rounded-full bg-linear-to-r from-primary via-secondary to-accent"
         />
       </div>
     </div>

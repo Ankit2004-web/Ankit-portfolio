@@ -14,7 +14,7 @@ const sizes = {
 export function InitialsAvatar({ size = 'md', className = '' }: InitialsAvatarProps) {
   return (
     <div
-      className={`flex items-center justify-center bg-primary font-display font-medium text-background ${sizes[size]} ${className}`}
+      className={`flex items-center justify-center rounded-full bg-linear-to-br from-primary via-secondary to-accent font-bold text-white shadow-lg shadow-primary/20 ring-4 ring-white/10 ${sizes[size]} ${className}`}
       aria-label={`${profile.site.name} avatar`}
     >
       {profile.site.initials}

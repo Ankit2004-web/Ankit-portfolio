@@ -40,7 +40,7 @@ export function Hero() {
               transition={{ delay: 0.3 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4"
             >
-              <span className="font-display font-medium">{siteConfig.name}</span>
+              <span className="text-gradient">{siteConfig.name}</span>
             </motion.h1>
 
             <motion.div
@@ -49,7 +49,7 @@ export function Hero() {
               transition={{ delay: 0.4 }}
               className="mb-6 min-h-10 text-2xl font-semibold text-foreground/80 sm:text-3xl"
             >
-              <TypingAnimation words={rotatingTitles} className="text-primary" />
+              <TypingAnimation words={rotatingTitles} className="text-gradient" />
             </motion.div>
 
             <motion.p
