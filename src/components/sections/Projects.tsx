@@ -241,11 +241,15 @@ export function Projects() {
                     : undefined
                 }
                 className={cn(
-                  'group glass overflow-hidden rounded-[28px] transition-all duration-300 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10',
+                  'group relative glass overflow-hidden rounded-[28px] transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/15',
+                  project.featured && 'shadow-lg shadow-primary/10 ring-1 ring-primary/35',
                   project.liveUrl && 'cursor-pointer',
                 )}
               >
                 <div className="grid lg:grid-cols-[minmax(260px,340px)_1fr]">
+                  {project.featured && (
+                    <div className="absolute inset-x-0 top-0 z-20 h-1 bg-linear-to-r from-primary via-secondary to-accent" />
+                  )}
                   <div className={cn('relative min-h-64 overflow-hidden bg-linear-to-br', project.gradient)}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_42%)]" />
                     <div className="absolute -bottom-16 -right-10 h-48 w-48 rounded-full bg-black/20 blur-2xl" />

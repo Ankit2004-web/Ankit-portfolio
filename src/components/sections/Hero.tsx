@@ -3,6 +3,7 @@ import { ArrowDown, FolderOpen, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/common/SocialIcons'
 import { ResumeButton } from '@/components/common/ResumeButton'
 import { siteConfig, rotatingTitles, socialLinks } from '@/data/site'
+import { profile } from '@/data/profile'
 import { projects } from '@/data/projects'
 import { techBadges } from '@/data/skills'
 import { Button } from '@/components/ui/button'
@@ -10,14 +11,50 @@ import { MagneticButton } from '@/components/common/MagneticButton'
 import { TypingAnimation } from '@/components/common/TypingAnimation'
 import { scrollToSection } from '@/lib/utils'
 
-const codeLines = [
-  { indent: 0, content: 'const developer = {', color: 'text-foreground' },
-  { indent: 1, content: 'name: "Ankit Biswas",', color: 'text-accent' },
-  { indent: 1, content: 'role: "Full Stack Developer",', color: 'text-accent' },
-  { indent: 1, content: 'stack: ["React", "Next.js", ".NET", "Python"],', color: 'text-accent' },
-  { indent: 1, content: 'passion: "Building scalable apps",', color: 'text-accent' },
-  { indent: 1, content: 'location: "Hyderabad, India",', color: 'text-accent' },
-  { indent: 0, content: '};', color: 'text-foreground' },
+const codeLines: Array<Array<{ text: string; className: string }>> = [
+  [
+    { text: 'const ', className: 'text-secondary' },
+    { text: 'developer', className: 'text-foreground' },
+    { text: ' = {', className: 'text-muted' },
+  ],
+  [
+    { text: 'name', className: 'text-primary' },
+    { text: ': ', className: 'text-muted' },
+    { text: '"Ankit Biswas"', className: 'text-accent' },
+    { text: ',', className: 'text-muted' },
+  ],
+  [
+    { text: 'role', className: 'text-primary' },
+    { text: ': ', className: 'text-muted' },
+    { text: '"Full Stack Developer"', className: 'text-accent' },
+    { text: ',', className: 'text-muted' },
+  ],
+  [
+    { text: 'stack', className: 'text-primary' },
+    { text: ': ', className: 'text-muted' },
+    { text: '["React", "Next.js", ".NET", "Python"]', className: 'text-accent' },
+    { text: ',', className: 'text-muted' },
+  ],
+  [
+    { text: 'company', className: 'text-primary' },
+    { text: ': ', className: 'text-muted' },
+    { text: '"Newmark"', className: 'text-accent' },
+    { text: ',', className: 'text-muted' },
+  ],
+  [
+    { text: 'location', className: 'text-primary' },
+    { text: ': ', className: 'text-muted' },
+    { text: '"Hyderabad, India"', className: 'text-accent' },
+    { text: ',', className: 'text-muted' },
+  ],
+  [{ text: '};', className: 'text-foreground' }],
+]
+
+const proof = [
+  { label: 'Now', value: 'Newmark' },
+  { label: 'Role', value: 'Associate Trainee' },
+  { label: 'Shipped', value: `${projects.length} projects` },
+  { label: 'Based', value: siteConfig.location.split(',')[0] },
 ]
 
 /** Fixed positions — each badge gets a unique slot to prevent overlap */
@@ -39,21 +76,26 @@ const badgePositions: Array<{
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center section-padding pt-32">
-      <div className="container-custom w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section id="home" className="relative flex min-h-screen items-center overflow-x-hidden section-padding pt-32">
+      <div className="container-custom w-full min-w-0">
+        <div className="grid w-full min-w-0 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="min-w-0"
           >
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-muted text-lg mb-4"
+              className="mb-5 inline-flex max-w-full items-center gap-2 whitespace-normal rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
             >
-              Hi, I&apos;m
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+              </span>
+              {profile.about.role}
             </motion.p>
 
             <motion.h1
@@ -69,7 +111,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="mb-6 min-h-10 text-2xl font-semibold text-foreground/80 sm:text-3xl"
+              className="mb-6 min-h-10 max-w-full text-2xl font-semibold text-foreground/80 sm:text-3xl"
             >
               <TypingAnimation words={rotatingTitles} className="text-gradient" />
             </motion.div>
@@ -78,7 +120,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-muted text-base sm:text-lg leading-relaxed max-w-xl mb-8"
+              className="mb-8 max-w-full text-base leading-relaxed text-muted sm:text-lg"
             >
               {siteConfig.description}
             </motion.p>
@@ -87,33 +129,30 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55 }}
-              className="mb-8 flex flex-wrap gap-2"
+              className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
             >
-              {['Newmark internship', `${projects.length} projects`, siteConfig.location.split(',')[0]].map(
-                (item) => (
-                  <span
-                    key={item}
-                    className="rounded-full glass px-3 py-1.5 text-xs font-medium text-foreground/85"
-                  >
-                    {item}
-                  </span>
-                ),
-              )}
+              {proof.map((item) => (
+                <div key={item.label} className="glass min-w-0 rounded-2xl px-3 py-3">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-primary">{item.label}</p>
+                  <p className="mt-1 text-sm font-semibold leading-snug break-words">{item.value}</p>
+                </div>
+              ))}
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-3 mb-8"
+              className="mb-8 flex flex-col gap-3 sm:flex-row"
             >
-              <MagneticButton>
-                <ResumeButton size="lg" />
+              <MagneticButton className="w-full sm:w-auto">
+                <ResumeButton size="lg" className="w-full" />
               </MagneticButton>
-              <MagneticButton>
+              <MagneticButton className="w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="lg"
+                  className="w-full"
                   onClick={() => scrollToSection('projects')}
                 >
                   <FolderOpen className="w-4 h-4" />
@@ -149,9 +188,10 @@ export function Hero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative min-h-[420px] sm:min-h-[460px] px-2 sm:px-6 py-8 overflow-visible"
+            className="relative min-h-[420px] min-w-0 overflow-hidden px-2 py-8 sm:min-h-[460px] sm:overflow-visible sm:px-6"
           >
-            <div className="relative z-10 rounded-2xl overflow-hidden glass glow-primary mx-auto max-w-lg">
+            <div className="relative z-10 mx-auto w-full max-w-lg rounded-2xl bg-linear-to-br from-primary via-secondary to-accent p-px shadow-2xl shadow-primary/25">
+              <div className="overflow-hidden rounded-[15px] glass">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/5">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -160,7 +200,7 @@ export function Hero() {
                 </div>
                 <span className="text-xs text-muted ml-2 font-mono">developer.ts</span>
               </div>
-              <div className="p-6 font-mono text-sm leading-relaxed">
+              <div className="overflow-x-auto p-6 font-mono text-sm leading-relaxed">
                 {codeLines.map((line, i) => (
                   <motion.div
                     key={i}
@@ -169,9 +209,13 @@ export function Hero() {
                     transition={{ delay: 0.8 + i * 0.1 }}
                     className="flex"
                   >
-                    <span className="text-muted/40 w-6 select-none">{i + 1}</span>
-                    <span style={{ paddingLeft: `${line.indent * 1.5}rem` }} className={line.color}>
-                      {line.content}
+                    <span className="w-6 select-none text-muted/40">{i + 1}</span>
+                    <span className={`whitespace-nowrap ${i === 0 || i === codeLines.length - 1 ? '' : 'pl-6'}`}>
+                      {line.map((part) => (
+                        <span key={part.text} className={part.className}>
+                          {part.text}
+                        </span>
+                      ))}
                     </span>
                   </motion.div>
                 ))}
@@ -180,6 +224,7 @@ export function Hero() {
                   transition={{ duration: 0.8, repeat: Infinity }}
                   className="inline-block w-2 h-4 bg-primary ml-14 mt-1"
                 />
+              </div>
               </div>
             </div>
 
@@ -191,7 +236,7 @@ export function Hero() {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2 + i * 0.08, type: 'spring' }}
-                  className="absolute pointer-events-none"
+                  className="absolute hidden pointer-events-none lg:block"
                   style={{
                     top: pos.top,
                     bottom: pos.bottom,

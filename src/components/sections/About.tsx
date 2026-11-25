@@ -5,6 +5,7 @@ import { ProfileAvatar } from '@/components/common/ProfileAvatar'
 import { GlowCard } from '@/components/common/SkillBar'
 import { profile } from '@/data/profile'
 import { staggerContainer, staggerItem } from '@/components/animations/variants'
+import { cn } from '@/lib/utils'
 
 const highlights = [
   {
@@ -81,10 +82,17 @@ export function About() {
           viewport={{ once: true }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16"
         >
-          {highlights.map((item) => (
+          {highlights.map((item, index) => (
             <motion.div key={item.title} variants={staggerItem}>
               <GlowCard className="h-full">
-                <item.icon className="w-8 h-8 text-primary mb-4" />
+                <div
+                  className={cn(
+                    'mb-4 flex h-11 w-11 items-center justify-center rounded-xl',
+                    ['bg-primary/15 text-primary', 'bg-secondary/15 text-secondary', 'bg-accent/15 text-accent', 'bg-primary/15 text-primary'][index],
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                </div>
                 <h4 className="font-semibold mb-2">{item.title}</h4>
                 <p className="text-sm text-muted leading-relaxed">{item.description}</p>
               </GlowCard>

@@ -32,9 +32,13 @@ export function SectionHeading({
         <span className="h-1.5 w-1.5 rounded-full bg-primary" />
         {label}
       </span>
-      <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-        {title}
-      </h2>
+      <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{title}</h2>
+      <span
+        className={cn(
+          'mb-5 block h-1 w-16 rounded-full bg-linear-to-r from-primary via-secondary to-accent',
+          align === 'center' && 'mx-auto',
+        )}
+      />
       {description && <p className="text-muted text-base md:text-lg leading-relaxed">{description}</p>}
     </motion.div>
   )

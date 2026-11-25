@@ -34,12 +34,13 @@ export function Navbar() {
       >
         <nav
           className={cn(
-            'container-custom mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300',
+            'container-custom relative mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300',
             scrolled
               ? 'glass rounded-2xl py-2 shadow-lg shadow-black/10'
               : 'bg-transparent py-2',
           )}
         >
+          <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px bg-linear-to-r from-transparent via-primary to-accent" />
           <div className="flex items-center justify-between">
             <button
               onClick={() => handleNavClick('#home')}
