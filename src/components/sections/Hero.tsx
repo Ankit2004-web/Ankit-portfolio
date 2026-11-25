@@ -3,6 +3,7 @@ import { ArrowDown, FolderOpen, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/common/SocialIcons'
 import { ResumeButton } from '@/components/common/ResumeButton'
 import { siteConfig, rotatingTitles, socialLinks } from '@/data/site'
+import { projects } from '@/data/projects'
 import { techBadges } from '@/data/skills'
 import { Button } from '@/components/ui/button'
 import { MagneticButton } from '@/components/common/MagneticButton'
@@ -13,7 +14,7 @@ const codeLines = [
   { indent: 0, content: 'const developer = {', color: 'text-foreground' },
   { indent: 1, content: 'name: "Ankit Biswas",', color: 'text-accent' },
   { indent: 1, content: 'role: "Full Stack Developer",', color: 'text-accent' },
-  { indent: 1, content: 'stack: ["React", ".NET", "SQL Server"],', color: 'text-accent' },
+  { indent: 1, content: 'stack: ["React", "Next.js", ".NET", "Python"],', color: 'text-accent' },
   { indent: 1, content: 'passion: "Building scalable apps",', color: 'text-accent' },
   { indent: 1, content: 'location: "Hyderabad, India",', color: 'text-accent' },
   { indent: 0, content: '};', color: 'text-foreground' },
@@ -68,7 +69,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-2xl sm:text-3xl font-semibold text-foreground/80 mb-6 h-10"
+              className="mb-6 min-h-10 text-2xl font-semibold text-foreground/80 sm:text-3xl"
             >
               <TypingAnimation words={rotatingTitles} className="text-gradient" />
             </motion.div>
@@ -81,6 +82,24 @@ export function Hero() {
             >
               {siteConfig.description}
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 }}
+              className="mb-8 flex flex-wrap gap-2"
+            >
+              {['Newmark internship', `${projects.length} projects`, siteConfig.location.split(',')[0]].map(
+                (item) => (
+                  <span
+                    key={item}
+                    className="rounded-full glass px-3 py-1.5 text-xs font-medium text-foreground/85"
+                  >
+                    {item}
+                  </span>
+                ),
+              )}
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

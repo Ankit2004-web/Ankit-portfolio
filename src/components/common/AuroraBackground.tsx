@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 export function AuroraBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 grid-bg opacity-40" />
+      <div className="absolute inset-0 grid-bg opacity-20" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(3,7,18,0.72)_100%)]" />
       <motion.div
         animate={{
           scale: [1, 1.2, 1],

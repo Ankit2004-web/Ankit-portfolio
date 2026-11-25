@@ -9,23 +9,23 @@ import { staggerContainer, staggerItem } from '@/components/animations/variants'
 const highlights = [
   {
     icon: Code2,
-    title: 'Full Stack Developer',
-    description: 'Building end-to-end enterprise solutions with React and ASP.NET Core.',
+    title: 'Enterprise',
+    description: 'WFIMS at Newmark: employees, attendance, leave, and reports in one platform.',
   },
   {
     icon: Layers,
-    title: 'Enterprise Software',
-    description: 'Crafting robust applications that solve real business problems at scale.',
-  },
-  {
-    icon: Rocket,
-    title: 'Scalable Applications',
-    description: 'Designing systems with clean architecture and performance in mind.',
+    title: 'Product',
+    description: 'Velune sends a private birthday as one link. No app and no account for the recipient.',
   },
   {
     icon: Target,
-    title: 'Problem Solver',
-    description: 'Strong backend and frontend skills to deliver intuitive user experiences.',
+    title: 'Security',
+    description: 'CipherLink stores every chat as ciphertext, with groups, photos, and voice notes.',
+  },
+  {
+    icon: Rocket,
+    title: 'Range',
+    description: 'From .NET and Next.js to Python, plus an Arduino alarm that watches a driver’s blinks.',
   },
 ]
 

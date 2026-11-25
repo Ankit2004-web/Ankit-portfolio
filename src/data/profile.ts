@@ -8,7 +8,7 @@ export const profile = {
     initials: 'AB',
     title: 'Software Engineer | Full Stack Developer',
     description:
-      'Building scalable enterprise web applications using React, ASP.NET Core, SQL Server, and modern cloud technologies with a focus on clean architecture, performance, and user experience.',
+      'Full stack developer at Newmark. I build enterprise software and ship products you can open, from a private gift site to an encrypted messenger, using React, .NET, Next.js, and Python.',
     location: 'Hyderabad, Telangana, India',
     email: 'imankit.biswas@gmail.com',
     phone: '+91 7864939820',
@@ -26,16 +26,17 @@ export const profile = {
   rotatingTitles: [
     'Software Engineer',
     'Full Stack Developer',
-    'React Developer',
-    '.NET Developer',
+    'React & Next.js Developer',
+    '.NET & Python Developer',
   ],
 
   about: {
-    heading: 'Crafting Digital Experiences',
-    subheading: 'A passionate developer building scalable enterprise solutions.',
+    heading: 'Enterprise work, and products you can open',
+    subheading: 'Internship software at Newmark, plus Velune, CipherLink, and hardware you can see.',
     paragraphs: [
       'I am a passionate Full Stack Developer and Software Engineer currently working as an IT Associate Trainee at Newmark. I specialize in building scalable enterprise web applications using React, ASP.NET Core, SQL Server, and modern cloud technologies.',
       'I enjoy solving real-world business problems through clean architecture, efficient backend systems, and intuitive user interfaces. I am constantly learning new technologies and improving my skills to build high-quality software that creates real impact.',
+      'Alongside the internship I ship my own work: Velune, a private birthday opened from one link, CipherLink, a messenger that stores chats as ciphertext, and an Arduino alarm that notices when a driver stops blinking.',
     ],
     role: 'IT Associate Trainee at Newmark',
   },
