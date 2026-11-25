@@ -91,7 +91,7 @@ export const profile = {
       id: 'wfims',
       title: 'Workforce Intelligence & Management System (WFIMS)',
       description:
-        'Developed an enterprise-grade workforce management platform during my internship at Newmark. The application includes employee management, attendance tracking, leave management, analytics dashboards, authentication, role-based access control, notifications, reporting, multilingual support, and responsive UI for enterprise users.',
+        'Workforce platform built during my internship at Newmark. Teams manage employees, attendance, and leave in one place, with role-based access, live analytics, notifications, and reports ready for day-to-day operations.',
       techStack: [
         'React',
         'TypeScript',
@@ -114,7 +114,7 @@ export const profile = {
       id: 'velune',
       title: 'Velune',
       description:
-        'A private birthday-gift site. A creator packs a themed celebration — photos, a letter, cake, music, and one share link — and the recipient opens it as a single cinematic page on their phone, with no app and no account. Built the creator studio, the recipient experience (lights, cake, memories, letter), durable photo storage, and the live deployment.',
+        'A private birthday, delivered as one link. The sender packs photos, a letter, cake, and music, and the recipient opens a cinematic page on their phone with no app and no account. I shipped the creator studio, the recipient experience, photo storage, and the live site.',
       techStack: [
         'TypeScript',
         'Next.js',
@@ -137,7 +137,7 @@ export const profile = {
       id: 'railway-reservation',
       title: 'Railyatra — Railway Reservation System',
       description:
-        'Built a secure railway reservation platform featuring JWT authentication, train search, ticket booking, booking management, and an admin dashboard with role-based access.',
+        'Passengers search trains, book tickets, and manage reservations without standing in a queue. Secure login protects each account, and an admin dashboard lets staff oversee bookings.',
       techStack: ['Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'HTML5', 'CSS3', 'JWT'],
       featured: false,
       isPrivate: false,
@@ -153,7 +153,7 @@ export const profile = {
       id: 'drowsiness-detection',
       title: 'Anti Sleep Alarm',
       description:
-        'Embedded driver drowsiness detection system using Arduino with IR blink sensing and buzzer alerts, plus a static documentation site with firmware code highlighting deployed on Vercel.',
+        'A small device that notices when a driver stops blinking and sounds an alarm. Built the Arduino firmware with an IR blink sensor and buzzer, plus a live site that explains the hardware and code.',
       techStack: [
         'Arduino UNO',
         'C++',
@@ -180,7 +180,7 @@ export const profile = {
       id: 'cipherlink',
       title: 'CipherLink',
       description:
-        'Encrypted messenger built as a Software Engineering mini project. Users register, log in, and chat privately, with every message stored as ciphertext using hybrid encryption (AES-256-GCM and RSA-OAEP). Includes the crypto engine, Flask APIs, database storage, and a React chat UI with groups, media, voice notes, stickers, Google sign-in, and a theme studio.',
+        'A messenger that stays private even in the database. People sign in, chat in groups, and send photos and voice notes, while every message is stored as ciphertext using AES-256-GCM and RSA-OAEP.',
       techStack: [
         'Python',
         'Flask',
