@@ -7,7 +7,6 @@ import { LoadingScreen } from '@/components/layout/LoadingScreen'
 import { BackToTop } from '@/components/layout/BackToTop'
 import { ScrollProgressBar } from '@/components/common/ScrollProgressBar'
 import { AuroraBackground } from '@/components/common/AuroraBackground'
-import { MouseGlow, CustomCursor } from '@/components/common/MouseEffects'
 import { HomePage } from '@/pages/Home'
 
 const CommandPalette = lazy(() =>
@@ -75,8 +74,6 @@ export default function App() {
       <LoadingScreen />
       <ScrollProgressBar />
       <AuroraBackground />
-      <MouseGlow />
-      <CustomCursor />
       <Navbar />
       <DeferredCommandPalette />
       <main className="relative z-10">

@@ -28,18 +28,11 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          scrolled ? 'py-2' : 'py-4',
+          'fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300',
+          scrolled ? 'border-white/10 bg-background/95' : 'border-transparent bg-transparent',
         )}
       >
-        <nav
-          className={cn(
-            'container-custom mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300',
-            scrolled
-              ? 'glass rounded-2xl py-2 shadow-lg shadow-black/10'
-              : 'bg-transparent py-2',
-          )}
-        >
+        <nav className="container-custom mx-auto px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <button
               onClick={() => handleNavClick('#home')}

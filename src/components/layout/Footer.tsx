@@ -1,5 +1,5 @@
 import { siteConfig } from '@/data/site'
-import { Mail, Heart } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/common/SocialIcons'
 
 export function Footer() {
@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-white/10 bg-surface/30">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary to-accent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-primary/70" />
       <div className="container-custom section-padding py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
@@ -48,10 +48,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
           <p>&copy; {year} {siteConfig.name}. All rights reserved.</p>
-          <p className="flex items-center gap-1">
-            Built with React + TypeScript + Tailwind CSS
-            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
-          </p>
+          <p>{siteConfig.location}</p>
         </div>
       </div>
     </footer>

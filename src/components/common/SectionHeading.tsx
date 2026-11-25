@@ -28,13 +28,8 @@ export function SectionHeading({
         className,
       )}
     >
-      <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-        {label}
-      </span>
-      <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-        {title}
-      </h2>
+      <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.28em] text-primary">{label}</p>
+      <h2 className="mb-4 font-display text-4xl font-medium tracking-tight md:text-5xl">{title}</h2>
       {description && <p className="text-muted text-base md:text-lg leading-relaxed">{description}</p>}
     </motion.div>
   )

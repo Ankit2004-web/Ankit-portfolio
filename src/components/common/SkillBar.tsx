@@ -20,7 +20,7 @@ export function SkillBar({ name, level, delay = 0 }: SkillBarProps) {
           whileInView={{ width: `${level}%` }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="h-full rounded-full bg-linear-to-r from-primary via-secondary to-accent"
+          className="h-full bg-primary"
         />
       </div>
     </div>
@@ -38,12 +38,11 @@ export function GlowCard({ children, className }: GlowCardProps) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
       className={cn(
-        'group relative rounded-2xl border border-white/10 bg-surface/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5',
+        'border border-white/10 bg-surface p-6 transition-colors duration-300 hover:border-primary/40',
         className,
       )}
     >
-      <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative">{children}</div>
+      <div>{children}</div>
     </motion.div>
   )
 }
