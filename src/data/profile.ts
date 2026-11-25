@@ -111,6 +111,29 @@ export const profile = {
       logo: '/image/wfims-logo.png',
     },
     {
+      id: 'velune',
+      title: 'Velune',
+      description:
+        'A private birthday-gift site. A creator packs a themed celebration — photos, a letter, cake, music, and one share link — and the recipient opens it as a single cinematic page on their phone, with no app and no account. Built the creator studio, the recipient experience (lights, cake, memories, letter), durable photo storage, and the live deployment.',
+      techStack: [
+        'TypeScript',
+        'Next.js',
+        'React',
+        'Tailwind CSS',
+        'Prisma',
+        'PostgreSQL',
+        'Zod',
+        'Google sign-in',
+      ],
+      featured: true,
+      isPrivate: true,
+      githubRepoSlug: 'velune',
+      liveUrl: 'https://velune-iyco.onrender.com',
+      gradient: 'from-purple-950 via-fuchsia-700 to-rose-500',
+      icon: 'gift' as const,
+      logo: '/image/velune-logo.png',
+    },
+    {
       id: 'railway-reservation',
       title: 'Railyatra — Railway Reservation System',
       description:

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ExternalLink, Users, TrainFront, Eye, Lock, Globe, LockKeyhole } from 'lucide-react'
+import { ExternalLink, Users, TrainFront, Eye, Lock, Globe, LockKeyhole, Gift } from 'lucide-react'
 import { GithubIcon } from '@/components/common/SocialIcons'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Badge } from '@/components/ui/badge'
@@ -17,6 +17,7 @@ const iconMap = {
   train: TrainFront,
   eye: Eye,
   lock: Lock,
+  gift: Gift,
   globe: Globe,
 }
 
@@ -31,7 +32,7 @@ export function Projects() {
         <SectionHeading
           label="Projects"
           title="Featured Work"
-          description="Enterprise applications and academic projects showcasing full stack development skills."
+          description="Enterprise applications, product work, and academic projects showcasing full stack development skills."
         />
 
         <motion.div
