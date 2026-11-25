@@ -46,9 +46,10 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div>
-              <div className="aspect-square max-w-md mx-auto">
-                <div className="flex h-full flex-col items-center justify-center border border-white/10 bg-surface p-8">
+            <div className="relative">
+              <div className="aspect-square max-w-md mx-auto relative">
+                <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/20 via-secondary/20 to-accent/20 blur-2xl" />
+                <div className="relative glass rounded-3xl p-8 flex flex-col items-center justify-center h-full">
                   <ProfileAvatar size="lg" className="mb-6" />
                   <h3 className="text-2xl font-bold mb-2">{profile.site.name}</h3>
                   <p className="text-muted text-center">{profile.about.role}</p>

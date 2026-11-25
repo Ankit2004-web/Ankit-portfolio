@@ -1,5 +1,5 @@
 import { siteConfig } from '@/data/site'
-import { Mail } from 'lucide-react'
+import { Mail, Heart } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/common/SocialIcons'
 
 export function Footer() {
@@ -48,7 +48,10 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
           <p>&copy; {year} {siteConfig.name}. All rights reserved.</p>
-          <p>{siteConfig.location}</p>
+          <p className="flex items-center gap-1">
+            Built with React + TypeScript + Tailwind CSS
+            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
+          </p>
         </div>
       </div>
     </footer>

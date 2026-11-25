@@ -203,8 +203,11 @@ export function Projects() {
         siteConfig.github
 
   return (
-    <section id="projects" ref={ref} className="section-padding relative scroll-mt-24">
-      <div className="container-custom">
+    <section id="projects" ref={ref} className="section-padding relative scroll-mt-24 overflow-hidden">
+      <div className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-64 w-64 rounded-full bg-secondary/10 blur-3xl" />
+
+      <div className="container-custom relative">
         <SectionHeading
           label="Projects"
           title="Featured Work"

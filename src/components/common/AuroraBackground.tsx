@@ -1,8 +1,34 @@
+import { motion } from 'framer-motion'
+
 export function AuroraBackground() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.18),transparent_46%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(124,58,237,0.12),transparent_40%)]" />
+    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 grid-bg opacity-20" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(3,7,18,0.72)_100%)]" />
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -top-1/2 -left-1/4 w-[800px] h-[800px] rounded-full bg-primary/20 blur-[120px]"
+      />
+      <motion.div
+        animate={{
+          scale: [1.2, 1, 1.2],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute -bottom-1/2 -right-1/4 w-[600px] h-[600px] rounded-full bg-secondary/20 blur-[100px]"
+      />
+      <motion.div
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.15, 0.3, 0.15],
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        className="absolute top-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-accent/15 blur-[100px]"
+      />
     </div>
   )
 }

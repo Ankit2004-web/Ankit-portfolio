@@ -38,11 +38,12 @@ export function GlowCard({ children, className }: GlowCardProps) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
       className={cn(
-        'border border-white/10 bg-surface p-6 transition-colors duration-300 hover:border-primary/40',
+        'group relative rounded-2xl border border-white/10 bg-surface/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5',
         className,
       )}
     >
-      <div>{children}</div>
+      <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative">{children}</div>
     </motion.div>
   )
 }
